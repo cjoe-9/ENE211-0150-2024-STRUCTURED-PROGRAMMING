@@ -1,0 +1,47 @@
+1.
+A normal variable is a named location in memory that stores a data value directly. A pointer is a variable that stores the memory address of another variable.
+  storage;normal variable stores actual data (e.g., 5, 'A') while a pointer stores a hexadecimal address (e.g., 0x7ffc)
+  access;normal variable has direct access while a pointer indirect access (via the address)
+  operator;normal variable has no special operator needed for value while a ponter variable requires * to get the value.
+
+2.Declaration and Initialization
+The syntax for pointers introduces two critical operators: * (Asterisk) and & (Ampersand).
+variable declaration and definition inform the compiler of a variable's name and type,
+with definition specifically reserving a block of memory to store a direct data value (like an integer or character).
+In contrast, a pointer declaration uses the asterisk symbol (*) to reserve memory specifically for a memory address rather than a data value. 
+While a normal variable is a container for data, a pointer is a container for a "location" that tells the computer where to find data stored elsewhere. 
+
+3.Dereferencing a Pointer
+Dereferencing is the act of accessing the data stored at the memory address held by a pointer. You use the * operator to do this.
+example; #include <stdio.h>
+int main() {
+    int val = 50;
+    int *p = &val;
+
+    printf("Value: %d\n", *p); // Outputs 50 (reading)
+
+    *p = 100;                  // Changing 'val' to 100 via the pointer (writing)
+    printf("New Value: %d\n", val); 
+    
+    return 0;
+}
+
+4.Why Use Pointers in C?
+-Dynamic Memory Allocation: Using malloc() and free() to manage memory during program execution.
+-Efficient Array Handling: C treats array names as pointers to their first element, allowing for fast iteration.
+Modifying Function Arguments: Since C is "call-by-value" by default, pointers are required to change a variable's value inside a function
+
+5.Limitations and Risks
+Dangling Pointers: A pointer pointing to a memory location that has been deleted/freed.
+Memory Leaks: Forgetting to free memory allocated via pointers, leading to wasted RAM.
+Segmentation Faults: Attempting to access restricted or null memory addresses, causing the program to crash.
+
+6.Call by Value vs. Call by Reference
+This defines how data is passed into functions.
+ comparison
+   Call by Value: A copy of the data is passed. Changes inside the function do not affect the original variable while Call by Reference (via Pointers): The address (or a reference) is passed. Changes inside the function directly modify the original variable
+
+7.Practical Scenarios
+-Call by Value is preferred when: You want to protect the original data from being accidentally changed by a function, or when working with small, simple data types like int or char.
+-Call by Reference is preferred when: You need the function to return multiple values (by modifying variables passed in) or when passing large objects/arrays to avoid the performance hit of copying data.
+   
